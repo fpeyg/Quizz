@@ -6,6 +6,7 @@ CREATE TABLE `user` (
   `hashed_password` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `salt` varchar(255) DEFAULT NULL,
+  `access_level` int(11) NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
