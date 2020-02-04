@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@SessionAttributes("grosminet")
+@SessionAttributes({"grosminet", "name"})
 public class MainController {
 
     @Autowired
@@ -48,14 +48,21 @@ public class MainController {
         return "register";
     }
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register() {
+    public String register(@RequestParam(name="name", required = false)
+                                       String name, Model model) {
+        if (name != null) {
+            model.addAttribute("grosminet", name);
+            model.addAttribute("name", name);
+        }
+        else if (model.getAttribute("grosminet") != null) {
+            model.addAttribute("name", model.getAttribute("grosminet"));
+        }
         return "register";
-
     }
-    @RequestMapping(value = "/index")
-    public String login(@RequestParam(name="name", required = false)
-                                String name, Model model) {
 
+    @GetMapping("/index")
+    public String index(@RequestParam(name="name", required = false)
+                                String name, Model model) {
         if (name != null) {
             model.addAttribute("grosminet", name);
             model.addAttribute("name", name);

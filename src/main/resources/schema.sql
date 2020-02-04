@@ -1,6 +1,10 @@
+DROP TABLE IF EXISTS `resultat_user`;
+DROP TABLE IF EXISTS `answer_user`;
 DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+DROP TABLE IF EXISTS `choice`;
+DROP TABLE IF EXISTS `question`;
+
+
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
   `hashed_password` varchar(255) DEFAULT NULL,
@@ -10,7 +14,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-DROP TABLE IF EXISTS `resultat_user`;
+/*DROP TABLE IF EXISTS `resultat_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `resultat_user` (
@@ -20,7 +24,7 @@ CREATE TABLE `resultat_user` (
   FOREIGN KEY (user_id) REFERENCES user(user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-DROP TABLE IF EXISTS `question`;
+/*DROP TABLE IF EXISTS `question`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `question` (
@@ -31,7 +35,7 @@ CREATE TABLE `question` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-DROP TABLE IF EXISTS `choice`;
+/*DROP TABLE IF EXISTS `choice`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `choice` (
@@ -45,7 +49,7 @@ CREATE TABLE `choice` (
    FOREIGN KEY (question_id) REFERENCES question(question_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-DROP TABLE IF EXISTS `answer_user`;
+/*DROP TABLE IF EXISTS `answer_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `answer_user` (
