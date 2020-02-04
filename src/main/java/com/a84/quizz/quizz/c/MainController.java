@@ -8,8 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @SessionAttributes({"grosminet", "name"})
@@ -60,7 +59,7 @@ public class MainController {
         return "register";
     }
 
-    @GetMapping("/index")
+    @RequestMapping(value = "/index")
     public String index(@RequestParam(name="name", required = false)
                                 String name, Model model) {
         if (name != null) {
@@ -71,5 +70,27 @@ public class MainController {
             model.addAttribute("name", model.getAttribute("grosminet"));
         }
         return "index";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login(
+            @RequestParam(name="name", required = true) String name,
+            @RequestParam(name="password", required = true) String password,
+            Model model) {
+        User u = userDAO.findByName(name);
+        if (u != null) {
+            if (u.getHashedPassword().endsWith(BCrypt.hashpw(password, u.getSalt()))) {
+                // Password match -> log the user in
+                model.addAttribute("logged_in", true);
+                model.addAttribute("name", name);
+                model.addAttribute("user", u.toString());
+                return "index";
+            }
+        }
+        return "login";
+    }
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "login";
     }
 }
