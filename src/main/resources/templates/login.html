@@ -18,6 +18,8 @@
 </form>
 
 <p th:text="'Hello, ' + ${name} + '!'" />
+<div th:if="${name} != null"><a href="/logout">Logout</a></div>
+<a href="/index">Index</a>
 
 </body>
 </html>

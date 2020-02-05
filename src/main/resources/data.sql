@@ -5,6 +5,6 @@ INSERT INTO `user` VALUES (4,'$2a$10$QqGXRzcWhftBBR0td85Iwe01UB1hHHaZtUw/DC0Y2dA
 INSERT INTO `user` VALUES (5,'$2a$10$Ecx7jIjfeO1ikd5RGDl.Je0e0QyZquFknGYkxDSP5Ev3QdwyIdoue','from','$2a$10$Ecx7jIjfeO1ikd5RGDl.Je',2);
 INSERT INTO `user` VALUES (6,'$2a$10$BbUec4.kw6CwqjJ4tEPTfemomq9oY0e1XoR1wBur1biasvGZoWfzu','the','$2a$10$BbUec4.kw6CwqjJ4tEPTfe',2);
 INSERT INTO `user` VALUES (7,'$2a$10$nLt0MhMQf0iF70gYVO1Y1uOWQ1y9ed/H/..fM/KGbAo/Uip9EbFVa','hood','$2a$10$nLt0MhMQf0iF70gYVO1Y1u',2);
-
+INSERT INTO `user` VALUES (8,'$2a$10$85VFBm3bX.CjiPbXqE/FMumkqV/bimbjr6aIHrPvNs/KQ/I3nZ1qW','mary','$2a$10$85VFBm3bX.CjiPbXqE/FMu',2);
 
 

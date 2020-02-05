@@ -1,12 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 <p th:text="'Hello, ' + ${name} + '!'" />
 <div th:if="${name} == null"><a href="/login">Login</a></div>
-<div th:if="${name} != null"><a href="/logout">Logout</a></div>
+
+
 </body>
 </html>

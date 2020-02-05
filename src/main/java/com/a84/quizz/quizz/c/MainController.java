@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @Controller
-@SessionAttributes({"grosminet", "name"})
+@SessionAttributes("session_name")
 public class MainController {
 
     @Autowired
@@ -47,28 +49,14 @@ public class MainController {
         return "register";
     }
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register(@RequestParam(name="name", required = false)
-                                       String name, Model model) {
-        if (name != null) {
-            model.addAttribute("grosminet", name);
-            model.addAttribute("name", name);
-        }
-        else if (model.getAttribute("grosminet") != null) {
-            model.addAttribute("name", model.getAttribute("grosminet"));
-        }
+    public String register() {
         return "register";
     }
 
     @RequestMapping(value = "/index")
-    public String index(@RequestParam(name="name", required = false)
-                                String name, Model model) {
-        if (name != null) {
-            model.addAttribute("grosminet", name);
-            model.addAttribute("name", name);
-        }
-        else if (model.getAttribute("grosminet") != null) {
-            model.addAttribute("name", model.getAttribute("grosminet"));
-        }
+    public String index(ModelMap model) {
+        System.out.println(model.getAttribute("name"));
+        model.getAttribute("name");
         return "index";
     }
 
@@ -83,14 +71,27 @@ public class MainController {
                 // Password match -> log the user in
                 model.addAttribute("logged_in", true);
                 model.addAttribute("name", name);
+
+                model.addAttribute("session_name", name);
+                model.addAttribute("name", name);
+                System.out.println(model.getAttribute("name"));
                 model.addAttribute("user", u.toString());
                 return "index";
             }
+        } else {
+            model.addAttribute("error_msg", "Error: name-login doesn't exist.");
         }
         return "login";
     }
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         return "login";
+    }
+
+    @RequestMapping(value = "/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "logout";
     }
 }
